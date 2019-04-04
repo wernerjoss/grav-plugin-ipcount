@@ -1,0 +1,12 @@
+name: IPcount
+version: 1.0.0
+description: Counts Website Visitors based on IP/Session Data
+icon: globe
+author:
+    name: Werner Joss
+    email: info@hoernerfranzracing.de
+homepage: https://github.com/wernerjoss/grav-plugin-ipcount
+keywords: grav, plugin, visitor, counter
+bugs: https://github.com/wernerjoss/grav-plugin-ipcount/issues
+readme: https://github.com/wernerjoss/grav-plugin-ipcount/README.md
+license: MIT
