@@ -1,6 +1,7 @@
 # IPcount Plugin
 
-The **IPcount** Plugin is for [Grav CMS](http://github.com/getgrav/grav). It counts the visitors on your Website
+The **IPcount** Plugin is for [Grav CMS](http://github.com/getgrav/grav). It counts the visitors on your Website.
+It is heavyly inspired by [Grav Plugin Iplocate](https://github.com/Perlkonig/grav-plugin-iplocate)
 
 ## Installation
 
