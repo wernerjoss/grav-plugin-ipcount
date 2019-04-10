@@ -10,3 +10,17 @@ keywords: grav, plugin, visitor, counter
 bugs: https://github.com/wernerjoss/grav-plugin-ipcount/issues
 readme: https://github.com/wernerjoss/grav-plugin-ipcount/README.md
 license: MIT
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 0
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool

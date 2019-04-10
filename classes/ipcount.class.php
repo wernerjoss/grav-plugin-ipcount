@@ -6,12 +6,7 @@ use RocketTheme\Toolbox\File\File;
 class ipCount {
 	
 	//initiate the ipCount vars
-	var $ip = null;	// not (really) used :)
 	var $counter = 0;
-	
-	function ipCount() {
-
-	}
 	
 	function count($cache, $ip) {
 		// see https://discourse.getgrav.org/t/best-practice-for-saving-managing-data-in-plugin/407/4
