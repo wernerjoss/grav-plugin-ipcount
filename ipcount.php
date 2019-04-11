@@ -36,7 +36,13 @@ class IPcountPlugin extends Plugin
         if ($this->isAdmin()) {
             return;
         }
-        require_once __DIR__ . '/classes/ipcount.class.php';
-        $countplugin = new ipCount();
+		require_once __DIR__ . '/classes/ipcount.class.php';
+		
+        global $_SERVER;
+		if (!isset($ip)) {
+				$ip = $_SERVER['REMOTE_ADDR'];
+		}
+		$countplugin = new ipCount();
+		$countplugin->count($this->grav['cache'], $ip);	// wird gebraucht, sonst kein count :)
     }
 }
