@@ -13,15 +13,15 @@ The simplest way to install this plugin is via the [Grav Package Manager (GPM)](
 
     bin/gpm install ipcount
 
-This will install the IPcount plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/ipcount`.
+This will install the IPcount plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/user/plugins/ipcount`.
 
 ### Manual Installation
 
-To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `ipcount`. You can find these files on [GitHub](https://github.com/wernerjoss/grav-plugin-ipcount)
+To install this plugin, just download the zip version of this repository and unzip it under `/your/site/user/plugins`. Then, rename the folder to `ipcount`. You can find these files on [GitHub](https://github.com/wernerjoss/grav-plugin-ipcount)
 
 You should now have all the plugin files under
 
-    /your/site/grav/user/plugins/ipcount
+    /your/site/user/plugins/ipcount
 	
 > NOTE: This plugin is a modular component for Grav which requires [Grav](http://github.com/getgrav/grav) and the [Error](https://github.com/getgrav/grav-plugin-error) and [Problems](https://github.com/getgrav/grav-plugin-problems) to operate.
 
@@ -41,4 +41,4 @@ All you have to do is make sure the plugin is `enabled`.
 ## Twig Variables
 
 Count data is stored in user://data/counter/counter.txt .
-You can use this anywhere on your Website to display via inserting {{ counter() }} in the desired twig File.
+You can use this anywhere on your Website to display via inserting {{ counter() }} in the desired twig File, or directly in a page (twig must be enabled in frontmatter).
