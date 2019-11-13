@@ -14,8 +14,13 @@ class ipCount {
 		if(!isset($_SESSION['counter'])) { // It's the first visit in this session
 			$file = File::instance(DATA_DIR . 'counter/counter.txt');
 			$counter = (int) $file->load();
-			$counter++;
-			$file->save($counter);
+			// basic crawler detection script (no legit browser should match this)
+			if(!empty($_SERVER['HTTP_USER_AGENT']) and preg_match('~(bot|crawl)~i', $_SERVER['HTTP_USER_AGENT'])){
+				// this is a crawler and counter should not be updated	-> do nothing
+			} else {
+				$counter++;
+				$file->save($counter);
+			}
 			$_SESSION['counter'] = $counter;
 			
 		} else { // It's not the first time, do not update the counter
