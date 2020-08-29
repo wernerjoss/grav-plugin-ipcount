@@ -38,7 +38,7 @@ class ipCount {
 			$_SESSION['isBot'] = $isBot;
 
 		} else { // It's not the first time, do not update the counter
-            $counter = $_SESSION['counter'];
+			$counter = $_SESSION['counter'];
         }
 		$this->counter = $counter;
 		return $this->counter;
