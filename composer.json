@@ -1,0 +1,27 @@
+{
+  "name": "wernerjoss/grav-plugin-ipcount",
+  "type": "grav-plugin",
+  "description": "Visitor Counter for Grav CMS",
+  "keywords": ["Visitor Count","Crawler"],
+  "homepage": "https://github.com/wernerjoss/grav-plugin-ipcount",
+  "license": "MIT",
+  "vendor": "wernerjoss",
+  "authors": [
+    {
+      "name": "Werner Joss",
+      "email": "info@hoernerfranzracing.de",
+      "homepage": "https://hoernerfranzracing.de",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.3",
+    "ext-json": "*",
+    "jaybizzle/crawler-detect": "^1.2"
+  },
+  "config": {
+    "platform": {
+      "php": "7.1.3"
+    }
+  }
+}
