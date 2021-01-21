@@ -15,6 +15,8 @@ The simplest way to install this plugin is via the [Grav Package Manager (GPM)](
 
 This will install the IPcount plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/ipcount`.
 
+Please note that GPM Installation will only be available when this Plugin has been released in the official Grav Directory, which has not been the case until now. So, for the time beeing, use the:
+
 ### Manual Installation
 
 To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `ipcount`. You can find these files on [GitHub](https://github.com/wernerjoss/grav-plugin-ipcount)

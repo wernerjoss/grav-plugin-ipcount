@@ -1,5 +1,6 @@
 <?php
 namespace Grav\Plugin;
+use Grav\Common\Plugin;
 use RocketTheme\Toolbox\File\File;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;  // TODO: this currently only works with jaybizzle/crawler-detect installed in Grav root, NOT local to plugin !
 // DONE: 29.08.20 - see main file ipcount.php
@@ -15,6 +16,7 @@ class ipCount {
 		if(!isset($_SESSION['counter'])) { // It's the first visit in this session
 			$file = File::instance(DATA_DIR . 'counter/counter.txt');
 			$counter = (int) $file->load();
+			
 			$isBot = false;
 			// basic crawler detection script (no legit browser should match this)
 			if(!empty($_SERVER['HTTP_USER_AGENT']) and preg_match('~(bot|crawl)~i', $_SERVER['HTTP_USER_AGENT'])){
@@ -32,14 +34,14 @@ class ipCount {
 			//	dump("isBot: ".$isBot."counter:".$counter);
 			if (!$isBot) {
 				$counter++;
-				$file->save($counter);
+				$file->save((string)$counter);	// Typcast mandatory since Grav 1.7 ! 21.01.21
 			}
 			$_SESSION['counter'] = $counter;
 			$_SESSION['isBot'] = $isBot;
 
 		} else { // It's not the first time, do not update the counter
 			$counter = $_SESSION['counter'];
-        }
+		}
 		$this->counter = $counter;
 		return $this->counter;
 	}

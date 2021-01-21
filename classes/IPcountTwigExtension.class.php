@@ -1,5 +1,6 @@
 <?php
 namespace Grav\Plugin;
+use Grav\Common\Plugin;
 use RocketTheme\Toolbox\File\File;
 
 class IPcountTwigExtension extends \Twig_Extension
@@ -18,8 +19,8 @@ class IPcountTwigExtension extends \Twig_Extension
 	{
 		$file = File::instance(DATA_DIR . 'counter/counter.txt');
 		$counter = (int) $file->load();
+		//	$counter = 1234567;
 		return $counter;
-		//	return '123456';
 	}
 }
 ?>
