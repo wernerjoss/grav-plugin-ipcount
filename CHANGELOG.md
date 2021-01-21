@@ -3,6 +3,7 @@
 
 1. [](#new)
     * better filtering for bot visits
+2. [](#bugfix)
     * fixed issue with data store since grav 1.7
 
 # v1.0.0
