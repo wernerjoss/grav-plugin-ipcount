@@ -1,3 +1,9 @@
+# v1.2.0
+##  22/01/2021
+
+1. [](#new)
+    * Data now stored in yaml File
+
 # v1.1.0
 ##  21/01/2021
 

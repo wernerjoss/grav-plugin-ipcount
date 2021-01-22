@@ -44,9 +44,9 @@ class IPcountPlugin extends Plugin
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
 		$countplugin = new ipCount();
-		$countplugin->count($this->grav['cache'], $ip);	// wird gebraucht, sonst kein count :)
-		/*	only for testing....
-		$this->grav['log']->info("IP:".$ip." UA:".$_SERVER['HTTP_USER_AGENT']." isBot:".$_SESSION['isBot']);
-		*/
+		if ($ip != null) {
+			$countplugin->count($this->grav['cache'], $ip);	// wird gebraucht, sonst kein count :)
+			//	$this->grav['log']->info("IP:".$ip." UA:".$_SERVER['HTTP_USER_AGENT']." isBot:".$_SESSION['isBot']);
+		}
 	}
 }

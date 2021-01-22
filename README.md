@@ -1,7 +1,7 @@
 # IPcount Plugin
 
 The **IPcount** Plugin is for [Grav CMS](http://github.com/getgrav/grav). It counts the visitors on your Website, excluding Robots/Scanners etc.
-It is heavyly inspired by [Grav Plugin Iplocate](https://github.com/Perlkonig/grav-plugin-iplocate)
+It is inspired by [Grav Plugin Iplocate](https://github.com/Perlkonig/grav-plugin-iplocate)
 
 ## Installation
 
@@ -44,5 +44,6 @@ All you have to do is make sure the plugin is `enabled`.
 
 ## Twig Variables
 
-Count data is stored in user://data/counter/counter.txt .
+Count data is stored in user://data/counter/counter.txt  - this is true up to Version 1.1.0.  
+From Version 1.2.0, Data File is user://data/counter/counter.yaml, so, if you are updating from V 1.1.x to 1.2.x, be sure to just copy your old count data from counter.txt to counter.yaml !  
 You can use this anywhere on your Website to display via inserting {{ counter() }} in the desired twig File (or page, if twig processing is enabled in frontmatter).
