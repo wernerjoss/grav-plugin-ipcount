@@ -62,6 +62,7 @@ class ipCount {
 				$countdata['count'] = $count;
 				$yamlfile->save(Yaml::dump($countdata));	// use yaml now to avoid future problems like 2 lines above :)
 			}
+			$sess->__set('counter', $count);
 			$_SESSION['counter'] = $count;
 			$_SESSION['isBot'] = $isBot;
 
