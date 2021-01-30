@@ -57,7 +57,7 @@ You can use the shortcode anywhere on your Website to display cumulated count da
 ## Data Visualisation:  
 Now that dayly count data is also stored, there should be the possibility to show this in a handy graphical representation, and here it is:  
 The Plugin comes with all you need for a Bar Chart that shows the dayly count data in a diagram.  
-All you need to do is copy the provided template visitors.html.twig from the plugin's template Directory to the templtes Directory of your Theme.  
+All you need to do is copy the provided template visitors.html.twig from the plugin's templates Directory to the templates Directory of your Theme.  
 Then you can create a page where the Diagram will be shown. Just be sure to use the Template visitors for the page, and use the following code in the page Frontmatter:
 ```
 title: Stats (or anything else you like...)
