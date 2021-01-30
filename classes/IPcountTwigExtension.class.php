@@ -1,7 +1,6 @@
 <?php
 namespace Grav\Plugin;
 use Grav\Common\Plugin;
-use Grav\Common\Yaml;
 use RocketTheme\Toolbox\File\File;
 
 class IPcountTwigExtension extends \Twig_Extension
@@ -18,14 +17,13 @@ class IPcountTwigExtension extends \Twig_Extension
 	}
 	public function countFunction()
 	{
-		//	$file = File::instance(DATA_DIR . 'counter/counter.txt');
-		//	$counter = (int) $file->load();	// old txt file approach
 		$counter = 0;
 		$countdata = array();
-		$path = DATA_DIR . 'counter/counter.yaml';	// yaml file from 22.01.21 !
+		$path = DATA_DIR . 'counter/counter.json';	// json file from 30.01.21 !
 		$countdata = array();
-		$yamlfile = File::instance($path);
-		$countdata = Yaml::parse($yamlfile->content());
+		$jsonfile = File::instance($path);
+		$json = file_get_contents($path);
+		$countdata = (array) json_decode($json, true);
 		$counter = (int) $countdata['count'];		
 		return $counter;
 	}

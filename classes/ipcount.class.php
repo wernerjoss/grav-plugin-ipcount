@@ -1,46 +1,47 @@
 <?php
 namespace Grav\Plugin;
 use Grav\Common\Plugin;
-use Grav\Common\Yaml;
 use Grav\Common\Session;
 use RocketTheme\Toolbox\File\File;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;  // TODO: this currently only works with jaybizzle/crawler-detect installed in Grav root, NOT local to plugin !
 // DONE: 29.08.20 - see main file ipcount.php
+// new: 29.01.21	-	save dayly count data in yaml file
+// new: 30.01.21	-	save dayly count data in json file (yaml access will be blocked due to security restrictions)
+// TODO: admin Interface to visualize historic count data
 
 class ipCount {
 
 	//initiate the ipCount vars
 	var $counter = 0;
+	var $daycount = 0;
 
 	public function count($cache, $ip) {
 		//	see https://discourse.getgrav.org/t/best-practice-for-saving-managing-data-in-plugin/407/4
-		//	session_start(); // Should always be on top
-		$path = DATA_DIR . 'counter/counter.yaml';	// yaml file from 22.01.21 !
+		$path = DATA_DIR . 'counter/counter.json';	// json file from 30.01.21 !
 		$countdata = array();
-		$yamlfile = File::instance($path);
+		$jsonfile = File::instance($path);
 		$sess = Session::getInstance();
 		$sess->start();	// instead of session_start()
-		//	if(!isset($_SESSION['counter'])) { // It's the first visit in this session
 		$cvar = $sess->__isset('counter');
 		if(!$cvar) {	// do NOT use $_SESSION here when working with grav Yaml File Classes, use Grav'S Session class instead !
-			/*	obsolete from 22.01.21:
-			$file = File::instance(DATA_DIR . 'counter/counter.txt');
-			$counter = (int) $file->load();
-			*/
+			$today = date("ymd");
 			if ( file_exists($path) ) {
-				$countdata = Yaml::parse($yamlfile->content());
+				$json = file_get_contents($path);
+				$countdata = (array) json_decode($json, true);
 				if ( $countdata === null ) {
 					$countdata = array();
 					$countdata['count'] = 0;
+					$countdata["days"][$today] = 0;
 				}
 			} else {
 				$countdata = array();
 				$countdata['count'] = 0;
-				$yamlfile->save(Yaml::dump($countdata));
+				$countdata["days"][$today] = 0;
+				$jsonfile->save(json_encode($countdata));
 				chmod($path, 0664);
 			}
 			$count = (int) $countdata['count'];
-
+			$daycount = (int) $countdata["days"][$today];
 			$isBot = false;
 			// basic crawler detection script (no legit browser should match this)
 			if(!empty($_SERVER['HTTP_USER_AGENT']) and preg_match('~(bot|crawl)~i', $_SERVER['HTTP_USER_AGENT'])){
@@ -48,8 +49,6 @@ class ipCount {
 				$isBot = true;
 			}
 			$CrawlerDetect = new CrawlerDetect;	// improved crawler detection
-			//	$this->grav = Grav::instance;
-			//	$this->grav['log']->info("IsCrawler:".$CrawlerDetect->isCrawler());	// this does not work !
 			// Check the user agent of the current 'visitor'
 			if($CrawlerDetect->isCrawler()) {
 				// true if crawler user agent detected
@@ -58,16 +57,16 @@ class ipCount {
 			//	dump("isBot: ".$isBot."counter:".$counter);
 			if (!$isBot) {
 				$count++;
-				//	$file->save((string)$counter);	// Typcast mandatory since Grav 1.7 ! 21.01.21
+				$daycount++;
 				$countdata['count'] = $count;
-				$yamlfile->save(Yaml::dump($countdata));	// use yaml now to avoid future problems like 2 lines above :)
+				$countdata["days"][$today] = $daycount;
+				$jsonfile->save(json_encode($countdata));
 			}
 			$sess->__set('counter', $count);
 			$_SESSION['counter'] = $count;
 			$_SESSION['isBot'] = $isBot;
 
 		} else { // It's not the first time, do not update the counter
-			//	$count = $_SESSION['counter'];
 			$count = $sess->__get('counter');	// see above $_SESSION remarks...
 		}
 		$this->counter = $count;

@@ -45,5 +45,14 @@ All you have to do is make sure the plugin is `enabled`.
 ## Twig Variables
 
 Count data is stored in user://data/counter/counter.txt  - this is true up to Version 1.1.0.  
-From Version 1.2.0, Data File is user://data/counter/counter.yaml, so, if you are updating from V 1.1.x to 1.2.x, be sure to just copy your old count data from counter.txt to counter.yaml !  
-You can use this anywhere on your Website to display via inserting {{ counter() }} in the desired twig File (or page, if twig processing is enabled in frontmatter).
+From Version 1.2.1, Data File is user://data/counter/counter.json, so, if you are updating from V 1.1.x to 1.2.x, be sure to just copy your old count data from counter.txt to counter.json ! - a sample counter.json looks like this:
+```
+{"count":123456}
+
+```
+so all you have to do is copy the correct number from counter.txt to counter.json :-)  
+
+You can use the shortcode anywhere on your Website to display cumulated count datas via inserting {{ counter() }} in the desired twig File (or page, if twig processing is enabled in frontmatter).
+
+## TODO:  
+Now that dayly count data is also stored, there should be the possibility to show this in a handy graphical representation, so stay tuned...

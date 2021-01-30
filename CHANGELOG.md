@@ -1,3 +1,10 @@
+# v1.2.1
+##  30/01/2021
+
+1. [](#new)
+    * Data now stored in json File, yaml File access for future analysis might be blocked
+    * add dayly count data to json File
+
 # v1.2.0
 ##  22/01/2021
 
