@@ -69,5 +69,5 @@ process:
 never_cache_twig: true
 
 ```
-![](https://github.com/wernerjoss/grav-plugin-ipcount/ksnip_20210130-213851.png)
+![](https://github.com/wernerjoss/grav-plugin-ipcount/blob/master/ksnip_20210130-213851.png)
 
