@@ -1,8 +1,15 @@
+# v1.3.0
+##  31/01/2021
+
+1. [](#new)
+    * add dayly Data graphical Presentation
+
 # v1.2.1
 ##  30/01/2021
 
 1. [](#new)
     * Data now stored in json File, yaml File access for future analysis might be blocked
+2. [](#new)
     * add dayly count data to json File
 
 # v1.2.0

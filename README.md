@@ -54,5 +54,20 @@ so all you have to do is copy the correct number from counter.txt to counter.jso
 
 You can use the shortcode anywhere on your Website to display cumulated count datas via inserting {{ counter() }} in the desired twig File (or page, if twig processing is enabled in frontmatter).
 
-## TODO:  
-Now that dayly count data is also stored, there should be the possibility to show this in a handy graphical representation, so stay tuned...
+## Data Visualisation:  
+Now that dayly count data is also stored, there should be the possibility to show this in a handy graphical representation, and here it is:  
+The Plugin comes with all you need for a Bar Chart that shows the dayly count data in a diagram.  
+All you need to do is copy the provided template visitors.html.twig from the plugin's template Directory to the templtes Directory of your Theme.  
+Then you can create a page where the Diagram will be shown. Just be sure to use the Template visitors for the page, and use the following code in the page Frontmatter:
+```
+title: Stats (or anything else you like...)
+datafile: counter.json
+cache_enable: false
+process:
+    markdown: true
+    twig: true
+never_cache_twig: true
+
+```
+
+
