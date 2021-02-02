@@ -31,10 +31,9 @@ Here's the default configuration. To override, first copy `ipcount.yaml` from th
 
 ```
 enabled: true
-
 ```
 
-  - `enabled` is used to enable/disable the plugin. There is no way to selectively enable this plugin. Either it is on or off.
+`enabled` is used to enable/disable the plugin. There is no way to selectively enable this plugin. Either it is on or off.
 
 ## Usage
 
