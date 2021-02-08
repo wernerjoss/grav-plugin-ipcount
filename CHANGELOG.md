@@ -1,3 +1,9 @@
+# v1.3.1
+##  08/02/2021
+
+1. [](#bugfix)
+    * fixed issue 'undefined index' when count data without daycount found
+
 # v1.3.0
 ##  31/01/2021
 
