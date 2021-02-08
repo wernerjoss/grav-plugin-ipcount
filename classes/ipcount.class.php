@@ -41,7 +41,11 @@ class ipCount {
 				chmod($path, 0664);
 			}
 			$count = (int) $countdata['count'];
-			$daycount = (int) $countdata["days"][$today];
+			try {
+				$daycount = (int) $countdata["days"][$today];	// this might fail, if file exists, but has no daycount data
+			}	catch (Exception $e) {
+				$daycount = 0;
+			}
 			$isBot = false;
 			// basic crawler detection script (no legit browser should match this)
 			if(!empty($_SERVER['HTTP_USER_AGENT']) and preg_match('~(bot|crawl)~i', $_SERVER['HTTP_USER_AGENT'])){
