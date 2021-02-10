@@ -1,3 +1,9 @@
+# v1.3.2
+##  10/02/2021
+
+1. [](#bugfix)
+    * fixed display of dayly data in graphical Presentation when Grav is not installed in Base Url (e.g. http://yoursite/grav)
+
 # v1.3.1
 ##  08/02/2021
 

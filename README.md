@@ -68,3 +68,6 @@ never_cache_twig: true
 ```
 ![](https://github.com/wernerjoss/grav-plugin-ipcount/blob/master/ksnip_20210130-213851.png)
 
+## Upgrade Notice:
+If you are upgrading from a Version <= 1.3.1, be sure to also update (= copy from Plugin templates Directory to your theme templates Directory) the file visitors.html.twig in your theme folder !
+
