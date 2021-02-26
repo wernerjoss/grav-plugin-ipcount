@@ -2,11 +2,14 @@
 {% block content %}
     <article class="post-2 page type-page status-publish hentry">   {# feel free to use your own classes here #}
         {% do assets.addJs('plugins://ipcount/assets/plotly-latest.min.js') %}
+        {% do assets.addJs('plugins://ipcount/assets/moment.js') %}
         {% do assets.addJs('plugins://ipcount/assets/getcountdata.js') %}
         <div class="entry-content">
             {{ page.content }}  {# any page content will be shown before the count data graphics #}
         </div>
         <h3 id='allcount'>Cumulated Visitor Count: {{ counter() }}</h3>
+        <button onclick="subMonth()">< Month</button>
+        <button onclick="toDay()">Today</button>
         <div id='homeurl' style='display:none;'>{{ home_url }}</div> {# write name of the base URL into the DOM, for access by getcountdata.js #}
         <div id='datafile' style='display:none;'>{{page.header.datafile}}</div> {# write name of datafile from page header into the DOM, for access by getcountdata.js #}
         <div id='daydata'></div>

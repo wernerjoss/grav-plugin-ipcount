@@ -1,5 +1,11 @@
+# v1.3.3
+##  02/26/2021
+
+1. [](#new)
+    * add Button for Month History in graphical Presentation
+
 # v1.3.2
-##  10/02/2021
+##  02/10/2021
 
 1. [](#bugfix)
     * fixed display of dayly data in graphical Presentation when Grav is not installed in Base Url (e.g. http://yoursite/grav)
