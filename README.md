@@ -68,6 +68,9 @@ never_cache_twig: true
 ```
 ![](https://github.com/wernerjoss/grav-plugin-ipcount/blob/master/ksnip_20210130-213851.png)
 
+## Additional Notes:
+As of V 1.3.5, a Utility Script CountRotate.php is added in Folder cron which can be used to keep the Count Data File at a reasonable small size, without losing old Data - see comments in the File for Usage.
+
 ## Upgrade Notice:
 If you are upgrading from a Version <= 1.3.1, be sure to also update (= copy from Plugin templates Directory to your theme templates Directory) the file visitors.html.twig in your theme folder !
 

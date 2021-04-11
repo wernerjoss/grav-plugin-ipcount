@@ -1,3 +1,9 @@
+# v1.3.5
+##  04/11/2021
+
+1. [](#new)
+    * Utility Script CountRotate.php added, see Docs in Comments there
+
 # v1.3.3
 ##  02/26/2021
 

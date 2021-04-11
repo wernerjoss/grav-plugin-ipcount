@@ -9,19 +9,19 @@
 	"authors": [
 	{
 		"name": "Werner Joss",
-		"email": "info@hoernerfranzracing.de",
+		"email": "wernerjoss@users.noreply.github.com",
 		"homepage": "https://hoernerfranzracing.de",
 		"role": "Developer"
 	}
 	],
 	"require": {
-		"php": ">=7.1.3",
+		"php": ">=7.3",
 		"ext-json": "*",
 		"jaybizzle/crawler-detect": "^1.2"
 	},
 	"config": {
 		"platform": {
-			"php": "7.1.3"
+			"php": "7.3"
 		}
 	}
 }
