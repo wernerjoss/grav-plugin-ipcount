@@ -45,6 +45,7 @@ class IPCountPlugin extends Plugin
 
 		$this->enable([
 			'onTwigExtensions' => ['onTwigExtensions', 0],
+			'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
 		]);
 
 		$this->countIP();
@@ -66,5 +67,11 @@ class IPCountPlugin extends Plugin
 	public function onTwigExtensions()
 	{
 		$this->grav['twig']->twig->addExtension(new IPCountTwigExtension());	// war zuerst in onPluginsInitialized, s.o.
+	}
+
+
+	public function onTwigTemplatePaths()
+	{
+		$this->grav['twig']->twig_paths[] = 'plugins://' . $this->name . '/templates';
 	}
 }
