@@ -57,6 +57,18 @@ class IPCounter
 		$sess->skipIPCount = true;
 	}
 
+	public function getStats(): array
+	{
+		/** @var File */
+		$dataFile = File::instance(IPCounter::DATAFILE);
+
+		if ($dataFile->exists()) {
+			return json_decode($dataFile->content(), true);
+		}
+
+		return ['count' => 0];
+	}
+
 	private function isCrawler(): bool
 	{
 		// basic crawler detection script (no legit browser should match this)
