@@ -82,9 +82,22 @@ class IPCountPlugin extends Plugin
 		/** @var Assets */
 		$assets = $this->grav['assets'];
 
-		$assets->addJs('plugins://' . $this->name . '/assets/plotly-latest.min.js');
-		$assets->addJs('plugins://' . $this->name . '/assets/moment.js');
-		$assets->addJs('plugins://' . $this->name . '/assets/getcountdata.js');
+		$assets->addJs('plugins://' . $this->name . '/assets/moment.js', ['group' => 'bottom']);
+		$assets->addJs('plugins://' . $this->name . '/assets/ipcountplotter.js', ['group' => 'bottom']);
+		$assets->addJs(
+			'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js',
+			[
+				'integrity' => 'sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==',
+				'crossorigin' => 'anonymous'
+			]
+		);
+
+		$ipCounter = new IPCounter();
+		$stats = $ipCounter->getStats();
+
+		$assets->addInlineJs(
+			'const ipcount = ' . json_encode($stats) . ';'
+		);
 	}
 
 	public function onTwigExtensions()
@@ -98,7 +111,6 @@ class IPCountPlugin extends Plugin
 			})
 		);
 	}
-
 
 	public function onTwigTemplatePaths()
 	{
