@@ -1,13 +1,11 @@
 <?php
-namespace Grav\Plugin;
-use Grav\Common\Plugin;
-use RocketTheme\Toolbox\File\File;
+namespace Grav\Plugin\IPCount;
 
-class IPcountTwigExtension extends \Twig_Extension
+class IPCountTwigExtension extends \Twig_Extension
 {
 	public function getName()
 	{
-		return 'IPcountTwigExtension';
+		return 'IPCountTwigExtension';
 	}
 	public function getFunctions()
 	{
@@ -25,7 +23,7 @@ class IPcountTwigExtension extends \Twig_Extension
 			$json = file_get_contents($path);
 			$countdata = (array) json_decode($json, true);
 			if ( !(is_null($countdata)) )
-				$counter = (int) $countdata['count'];		
+				$counter = (int) $countdata['count'];
 		}
 		return $counter;
 	}

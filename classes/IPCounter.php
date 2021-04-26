@@ -1,15 +1,16 @@
 <?php
-namespace Grav\Plugin;
-use Grav\Common\Plugin;
+namespace Grav\Plugin\IPCount;
+
 use Grav\Common\Session;
 use RocketTheme\Toolbox\File\File;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;  // TODO: this currently only works with jaybizzle/crawler-detect installed in Grav root, NOT local to plugin !
+
 // DONE: 29.08.20 - see main file ipcount.php
 // new: 29.01.21	-	save dayly count data in yaml file
 // new: 30.01.21	-	save dayly count data in json file (yaml access will be blocked due to security restrictions)
 // TODO: admin Interface to visualize historic count data
 
-class ipCount {
+class IPCounter {
 
 	//initiate the ipCount vars
 	var $counter = 0;
@@ -43,7 +44,7 @@ class ipCount {
 			$count = (int) $countdata['count'];
 			try {
 				$daycount = (int) $countdata["days"][$today];	// this might fail, if file exists, but has no daycount data
-			}	catch (Exception $e) {
+			}	catch (\Exception $e) {
 				$daycount = 0;
 			}
 			$isBot = false;

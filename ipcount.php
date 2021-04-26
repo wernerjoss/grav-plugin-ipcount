@@ -2,14 +2,15 @@
 namespace Grav\Plugin;
 
 use Grav\Common\Plugin;
-use RocketTheme\Toolbox\File\File;
-use RocketTheme\Toolbox\Event\Event;
+
+use Grav\Plugin\IPCount\IPCounter;
+use Grav\Plugin\IPCount\IPCountTwigExtension;
 
 /**
- * Class IPcountPlugin
+ * Class IPCountPlugin
  * @package Grav\Plugin
  */
-class IPcountPlugin extends Plugin
+class IPCountPlugin extends Plugin
 {
 	/**
 	* @return array
@@ -17,17 +18,25 @@ class IPcountPlugin extends Plugin
 	*/
 	public static function getSubscribedEvents()
 	{
-		include __DIR__ . '/vendor/autoload.php';   // this enables loading of external librarys, installed in Plugin Dir via composer 29.08.20
 		return [
 			'onPluginsInitialized' => ['onPluginsInitialized', 0],
 			'onTwigExtensions' => ['onTwigExtensions', 0]		// wichtig, funktioniert sonst nicht !!
 		];
 	}
 
+	/**
+	 * Composer autoload.
+	 *
+	 * @return \Composer\Autoload\ClassLoader
+	 */
+	public function autoload(): \Composer\Autoload\ClassLoader
+	{
+		return require __DIR__ . '/vendor/autoload.php';
+	}
+
 	public function onTwigExtensions()
 	{
-		require_once(__DIR__ . '/classes/IPcountTwigExtension.class.php');
-		$this->grav['twig']->twig->addExtension(new IPcountTwigExtension());	// war zuerst in onPluginsInitialized, s.o.
+		$this->grav['twig']->twig->addExtension(new IPCountTwigExtension());	// war zuerst in onPluginsInitialized, s.o.
 	}
 	/**
 	* Initialize the plugin
@@ -38,12 +47,11 @@ class IPcountPlugin extends Plugin
 		if ($this->isAdmin()) {
 			return;
 		}
-		require_once __DIR__ . '/classes/ipcount.class.php';
 		global $_SERVER;
 		if (!isset($ip)) {
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
-		$countplugin = new ipCount();
+		$countplugin = new IPCounter();
 		if ($ip != null) {
 			$countplugin->count($this->grav['cache'], $ip);	// wird gebraucht, sonst kein count :)
 			//	$this->grav['log']->info("IP:".$ip." UA:".$_SERVER['HTTP_USER_AGENT']." isBot:".$_SESSION['isBot']);

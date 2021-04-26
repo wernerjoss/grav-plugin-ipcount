@@ -19,6 +19,14 @@
 		"ext-json": "*",
 		"jaybizzle/crawler-detect": "^1.2"
 	},
+    "autoload": {
+        "psr-4": {
+            "Grav\\Plugin\\IPCount\\": "classes/"
+        },
+        "classmap": [
+            "ipcount.php"
+        ]
+    },
 	"config": {
 		"platform": {
 			"php": "7.3"
