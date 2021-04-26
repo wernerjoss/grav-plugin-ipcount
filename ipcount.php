@@ -1,10 +1,12 @@
 <?php
+
 namespace Grav\Plugin;
 
 use Grav\Common\Plugin;
-
+use Grav\Common\Page\Page;
+use Grav\Common\Assets;
 use Grav\Plugin\IPCount\IPCounter;
-use Grav\Plugin\IPCount\IPCountTwigExtension;
+use RocketTheme\Toolbox\Event\Event;
 
 /**
  * Class IPCountPlugin
@@ -13,9 +15,9 @@ use Grav\Plugin\IPCount\IPCountTwigExtension;
 class IPCountPlugin extends Plugin
 {
 	/**
-	* @return array
-	*
-	*/
+	 * @return array
+	 *
+	 */
 	public static function getSubscribedEvents()
 	{
 		return [
@@ -46,6 +48,7 @@ class IPCountPlugin extends Plugin
 		$this->enable([
 			'onTwigExtensions' => ['onTwigExtensions', 0],
 			'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
+			'onPageInitialized' => ['onPageInitialized', 0],
 		]);
 
 		$this->countIP();
@@ -62,6 +65,26 @@ class IPCountPlugin extends Plugin
 
 		$ipCounter = new IPCounter();
 		$ipCounter->addIP();
+	}
+
+	public function onPageInitialized(Event $event)
+	{
+		/** @var Page */
+		$page = $event['page'];
+
+		if ($page->template() === 'visitors') {
+			$this->addAssets();
+		}
+	}
+
+	private function addAssets()
+	{
+		/** @var Assets */
+		$assets = $this->grav['assets'];
+
+		$assets->addJs('plugins://' . $this->name . '/assets/plotly-latest.min.js');
+		$assets->addJs('plugins://' . $this->name . '/assets/moment.js');
+		$assets->addJs('plugins://' . $this->name . '/assets/getcountdata.js');
 	}
 
 	public function onTwigExtensions()

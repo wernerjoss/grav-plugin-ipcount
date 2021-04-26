@@ -1,9 +1,6 @@
 {% extends 'partials/base.html.twig' %}
 {% block content %}
     <article class="post-2 page type-page status-publish hentry">   {# feel free to use your own classes here #}
-        {% do assets.addJs('plugins://ipcount/assets/plotly-latest.min.js') %}
-        {% do assets.addJs('plugins://ipcount/assets/moment.js') %}
-        {% do assets.addJs('plugins://ipcount/assets/getcountdata.js') %}
         <div class="entry-content">
             {{ page.content }}  {# any page content will be shown before the count data graphics #}
         </div>
