@@ -66,7 +66,14 @@ class IPCountPlugin extends Plugin
 
 	public function onTwigExtensions()
 	{
-		$this->grav['twig']->twig->addExtension(new IPCountTwigExtension());	// war zuerst in onPluginsInitialized, s.o.
+		$this->grav['twig']->twig->addFunction(
+			new \Twig_SimpleFunction('counter', function () {
+				$ipcount = new IPCounter();
+				$stats = $ipcount->getStats();
+
+				return $stats['count'];
+			})
+		);
 	}
 
 
