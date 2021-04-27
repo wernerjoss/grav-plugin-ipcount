@@ -23,11 +23,10 @@ You should now have all the plugin files under
 
     /your/site/grav/user/plugins/ipcount
 
-> NOTE: This plugin requires [Grav](http://github.com/getgrav/grav) and the [Error](https://github.com/getgrav/grav-plugin-error) and [Problems](https://github.com/getgrav/grav-plugin-problems) to operate.
 
 ## Configuration
 
-Here's the default configuration. To override, first copy `ipcount.yaml` from the `plugins/ipcount` folder to your `config/plugins` folder.
+To override the default configuration, copy `/user/plugins/ipcount.yaml` to your `/user/config/plugins` folder.
 
 ```
 enabled: true
@@ -35,42 +34,48 @@ enabled: true
 
 `enabled` is used to enable/disable the plugin. There is no way to selectively enable this plugin. Either it is on or off.
 
-## Usage
+## Data file
+Visitor counts are stored in `/user/data/counter/counter.json`.
 
-All you have to do is make sure the plugin is `enabled`.
-
-## Twig Variables
-
-Count data is stored in user://data/counter/counter.txt  - this is true up to Version 1.1.0.  
-From Version 1.2.1, Data File is user://data/counter/counter.json, so, if you are updating from V 1.1.x to 1.2.x, be sure to just copy your old count data from counter.txt to counter.json ! - a sample counter.json looks like this:
+If you are updating from v1.1.x to 1.2.x, be sure to copy your old count data from `counter.txt` to `counter.json`.
+A sample `counter.json` file looks as follows:
 ```
-{"count":123456}
-
+{
+    "count": 232,
+    "days": {
+        "210101": 58,
+        "210102": 96,
+        "210103": 78
+    }
+}
 ```
-so all you have to do is copy the correct number from counter.txt to counter.json :-)  
+So all you have to do is copy the correct number from counter.txt to counter.json :-)
 
-You can use the shortcode anywhere on your Website to display cumulated count datas via inserting {{ counter() }} in the desired twig File (or page, if twig processing is enabled in frontmatter).
-
-## Data Visualisation:  
-Now that dayly count data is also stored, there should be the possibility to show this in a handy graphical representation, and here it is:  
-The Plugin comes with all you need for a Bar Chart that shows the dayly count data in a diagram.  
-All you need to do is copy the provided template visitors.html.twig from the plugin's templates Directory to the templates Directory of your Theme.  
-Then you can create a page where the Diagram will be shown. Just be sure to use the Template visitors for the page, and use the following code in the page Frontmatter:
+## Available Twig variables
+### Using Twig template
+To show the cummulative number of visitors on every page, you can add the Twig function `{{ counter() }}` to a suitable template of your theme. E.g. in `/user/themes/quark/templates/default.html.twig`:
 ```
-title: Stats (or anything else you like...)
-datafile: counter.json
-cache_enable: false
+{% block content %}
+    {{ page.content|raw }}
+
+    Visitor count: {{ counter() }}
+{% endblock %}
+```
+
+### Inline in page content
+If you wish to embed the counter inside the content of a page, you can add `{{ counter() }}` anywhere inside the Markdown of your page and add the following to the frontmatter of the page:
+```
+---
 process:
-    markdown: true
-    twig: true
-never_cache_twig: true
-
+  twig: true
+cache_enable: false
+---
 ```
-![](https://github.com/wernerjoss/grav-plugin-ipcount/blob/master/ksnip_20210130-213851.png)
+
+## Chart with daily visitors
+To show the visitor count in a bar chart, create a new page using the `visitors.html.twig` template. E.g.  `/user/pages/03.chart/visitors.md`
+
+![](readme-chart.webp)
 
 ## Additional Notes:
 As of V 1.3.5, a Utility Script CountRotate.php is added in Folder cron which can be used to keep the Count Data File at a reasonable small size, without losing old Data - see comments in the File for Usage.
-
-## Upgrade Notice:
-If you are upgrading from a Version <= 1.3.1, be sure to also update (= copy from Plugin templates Directory to your theme templates Directory) the file visitors.html.twig in your theme folder !
-

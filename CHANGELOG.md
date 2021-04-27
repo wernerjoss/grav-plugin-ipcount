@@ -1,3 +1,18 @@
+# v.1.3.6
+##  ../../2021
+
+1. [](#updates)
+   * Improve usage composer
+   * Refactor/cleanup ipcount.php
+   * Add template registration
+   * Move data logic from Twig extension into IPCounter
+   * Refactor creation of Twig function
+   * Move assets loading from Twig to ipcount.php
+   * Rewrite js library
+2. [](#bugfix)
+   * Fix {{ page.content }} requires filter |raw
+   * Show all days of month in chart
+
 # v1.3.5
 ##  04/11/2021
 
