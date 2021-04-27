@@ -3,11 +3,10 @@ class IPCountPlotter {
 	constructor() {
 		this.subMonths = 1;
 		this.chartJs = null;
+		this.ipCount = ipcount;
 	}
 
 	initialize() {
-		this.nativeObject = ipcount;
-
 		this.addEventListeners();
 		this.initializeChart();
 	}
@@ -36,7 +35,7 @@ class IPCountPlotter {
 	}
 
 	filterData(monthfilter) {
-		const days = this.nativeObject['days'];
+		const days = this.ipCount['days'];
 		const dates = [];
 		const visitors = [];
 
@@ -69,6 +68,11 @@ class IPCountPlotter {
 							display: true,
 						},
 					},
+					scales: {
+						x: {
+							type: 'category',
+						}
+					}
 				}
 			}
 		);
@@ -78,6 +82,7 @@ class IPCountPlotter {
 		const month = monthfilter.substr(2, 2);
 		const year = monthfilter.substr(0, 2);
 		const title = 'Dayly Visitors Count for ' + month + ' / ' + year;
+		const dayCount = moment(monthfilter, "YYMM").daysInMonth();
 
 		const data = {
 			labels: dates,
@@ -89,6 +94,7 @@ class IPCountPlotter {
 
 		this.chartJs.data = data;
 		this.chartJs.options.plugins.title.text = title;
+		this.chartJs.options.scales.x.labels = Array.from({ length: dayCount }, (_, i) => i + 1);
 		this.chartJs.update();
 	}
 }
