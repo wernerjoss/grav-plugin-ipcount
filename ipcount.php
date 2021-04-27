@@ -82,7 +82,6 @@ class IPCountPlugin extends Plugin
 		/** @var Assets */
 		$assets = $this->grav['assets'];
 
-		$assets->addJs('plugins://' . $this->name . '/assets/moment.js', ['group' => 'bottom']);
 		$assets->addJs('plugins://' . $this->name . '/assets/ipcountplotter.js', ['group' => 'bottom']);
 		$assets->addJs(
 			'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js',

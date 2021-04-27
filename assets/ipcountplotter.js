@@ -1,9 +1,9 @@
 class IPCountPlotter {
 
 	constructor() {
-		this.subMonths = 1;
 		this.chartJs = null;
 		this.ipCount = ipcount;
+		this.date = new Date();
 	}
 
 	initialize() {
@@ -17,36 +17,50 @@ class IPCountPlotter {
 	}
 
 	showPreviousMonth() {
-		const monthFilter = moment().subtract(this.subMonths, 'months').format('YYMM');
+		this.date.setDate(0);
 
-		this.subMonths++; // update for next click !
+		const yearMonthFilter = this.getYearMonthFilter();
 
-		const [dates, visitors] = this.filterData(monthFilter);
-		this.drawChartJs(monthFilter, dates, visitors);
+		const [dates, visitors] = this.filterData(yearMonthFilter);
+		this.drawChartJs(yearMonthFilter, dates, visitors);
 
 	}
 
 	showCurrentMonth() {
-		const monthFilter = moment().format('YYMM'); // today !
-		this.subMonths = 1; // default value
+		this.date = new Date();
 
-		const [dates, visitors] = this.filterData(monthFilter);
-		this.drawChartJs(monthFilter, dates, visitors);
+		const yearMonthFilter = this.getYearMonthFilter();
+
+		const [dates, visitors] = this.filterData(yearMonthFilter);
+		this.drawChartJs(yearMonthFilter, dates, visitors);
 	}
 
-	filterData(monthfilter) {
+	getYearMonthFilter() {
+		const monthNr = (this.date.getMonth() + 1).toString().padStart(2, '0');
+		const year = `${this.date.getFullYear()}`.slice(2);
+
+		return `${year}${monthNr}`;
+	}
+
+	getLastDayOfMonth() {
+		return new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
+	}
+
+	filterData(filterYearMonth) {
 		const days = this.ipCount['days'];
-		const dates = [];
-		const visitors = [];
+		const lastDay = this.getLastDayOfMonth();
+
+		const dates = Array.from({ length: lastDay }, (i) => i + 1);
+		const visitors = Array.from({ length: lastDay }, () => 0);
 
 		Object.entries(days).forEach((item) => {
 			const date = item[0];
-			const datum = date.substr(4, 2) + '.' + date.substr(2, 2) + '.' + date.substr(0, 2);
-			const monthsig = date.substr(0, 2) + date.substr(2, 2);
 
-			if (monthfilter.valueOf() == monthsig.valueOf()) {
-				dates.push(datum);
-				visitors.push(item[1]);
+			const itemYearMonth = date.substr(0, 2) + date.substr(2, 2);
+
+			if (filterYearMonth === itemYearMonth) {
+				const dayIndex = Number(date.slice(-2)) - 1;
+				visitors[dayIndex] = item[1];
 			}
 		});
 
@@ -78,11 +92,11 @@ class IPCountPlotter {
 		);
 	}
 
-	drawChartJs(monthfilter, dates, visitors) {
-		const month = monthfilter.substr(2, 2);
-		const year = monthfilter.substr(0, 2);
+	drawChartJs(yearMonthFilter, dates, visitors) {
+		const year = yearMonthFilter.substr(0, 2);
+		const month = yearMonthFilter.substr(2, 2);
 		const title = 'Dayly Visitors Count for ' + month + ' / ' + year;
-		const dayCount = moment(monthfilter, "YYMM").daysInMonth();
+		const dayCount = this.getLastDayOfMonth();
 
 		const data = {
 			labels: dates,
