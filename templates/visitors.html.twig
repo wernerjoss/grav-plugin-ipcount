@@ -3,7 +3,7 @@
 {% block content %}
     <article class="post-2 page type-page status-publish hentry">   {# feel free to use your own classes here #}
         <div class="entry-content">
-            {{ page.content }}  {# any page content will be shown before the count data graphics #}
+            {{ page.content | raw }}  {# any page content will be shown before the count data graphics #}
         </div>
 
         <h3 id='allcount'>Cumulated Visitor Count: {{ counter() }}</h3>
