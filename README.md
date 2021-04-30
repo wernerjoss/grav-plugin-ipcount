@@ -78,4 +78,5 @@ To show the visitor count in a bar chart, create a new page using the `visitors.
 ![](readme-chart.webp)
 
 ## Additional Notes:
-As of V 1.3.5, a Utility Script CountRotate.php is added in Folder cron which can be used to keep the Count Data File at a reasonable small size, without losing old Data - see comments in the File for Usage.
+- As of V 1.3.5, a Utility Script CountRotate.php is added in Folder cron which can be used to keep the Count Data File at a reasonable small size,without losing old Data - see comments in the File for Usage.  
+- After Update to V 1.3.6, be sure to delete or replace visitors.html.twig Template in your Theme Folder, as this is now provided by the plugin (this hint can be ignored if you are not using a chart page). 
