@@ -83,14 +83,7 @@ class IPCountPlugin extends Plugin
 		$assets = $this->grav['assets'];
 
 		$assets->addJs('plugins://' . $this->name . '/assets/ipcountplotter.js', ['group' => 'bottom']);
-		$assets->addJs(
-			'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js',
-			[
-				'integrity' => 'sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==',
-				'crossorigin' => 'anonymous'
-			]
-		);
-
+		$assets->addJs('plugins://' . $this->name . '/assets/chart.min.js', ['group' => 'bottom']);	// this is chart.js 3.2.1, local copy instead of cdn
 		$ipCounter = new IPCounter();
 		$stats = $ipCounter->getStats();
 
