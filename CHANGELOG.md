@@ -1,8 +1,8 @@
 # v.1.3.7
 ##  26/04/2022
-   * update jaybizzle/crawler-detect
-
 1. [](#updates)
+   * update jaybizzle/crawler-detect to v1.2.111
+
 # v.1.3.6
 ##  04/30/2021
 
