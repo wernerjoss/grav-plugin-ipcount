@@ -6,8 +6,8 @@
             {{ page.content | raw }}  {# any page content will be shown before the count data graphics #}
         </div>
 
-        <h3 id='allcount'>Cumulated Visitor Count: {{ counter() }}</h3>
-        <button id="showPrevMonth">< Month</button>
+        <h3 id='allcount'>{{ 'PLUGIN_IPCOUNT.CHART_LABEL'|t }}: {{ counter() }}</h3>
+        <button id="showPrevMonth">&lt; Month</button>
         <button id="showToday">Today</button>
         <canvas id="ipChart"></canvas>
     </article>
