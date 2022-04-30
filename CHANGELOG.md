@@ -1,3 +1,9 @@
+# v.1.3.8
+##  30/04/2022
+1. [](#updates)
+   * merge pull request #3 from hughbris
+   * add translatable Chart Titles
+
 # v.1.3.7
 ##  26/04/2022
 1. [](#updates)

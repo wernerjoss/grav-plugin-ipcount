@@ -95,9 +95,8 @@ class IPCountPlotter {
 	drawChartJs(yearMonthFilter, dates, visitors) {
 		const year = yearMonthFilter.substr(0, 2);
 		const month = yearMonthFilter.substr(2, 2);
-		//	const title = 'Dayly Visitors Count for ' + month + ' / ' + year;
-		var title = $("#ChartTitle").text();	//	obj.firstChild.innerText();
-		//	console.log("Title:", title);
+		//	const title = 'Dayly Visitors Count for ' + month + ' / ' + year;	// old
+		var title = $("#ChartTitle").text();	//	new 30.04.22
 		title = title + ' ' + month + ' / ' + year;
 		const dayCount = this.getLastDayOfMonth();
 
