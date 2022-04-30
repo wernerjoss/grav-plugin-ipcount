@@ -6,7 +6,8 @@
             {{ page.content | raw }}  {# any page content will be shown before the count data graphics #}
         </div>
 
-        <h3 id='allcount'>{{ 'PLUGIN_IPCOUNT.CHART_LABEL'|t }}: {{ counter() }}</h3>
+        <h3 id='allcount'>{{ 'PLUGIN_IPCOUNT.CHART_LABEL1'|t }}: {{ counter() }}</h3>
+        <span id='ChartTitle' style="display:none;">{{ 'PLUGIN_IPCOUNT.CHART_LABEL2'|t }}</span>
         <button id="showPrevMonth">&lt; Month</button>
         <button id="showToday">Today</button>
         <canvas id="ipChart"></canvas>

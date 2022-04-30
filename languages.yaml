@@ -1,3 +1,10 @@
 en:
   PLUGIN_IPCOUNT:
-    CHART_LABEL: Accumulated Visitor Count
+    CHART_LABEL1: Accumulated Visitor Count
+    CHART_LABEL2: Daily Visitor Count
+  
+de:
+  PLUGIN_IPCOUNT:
+    CHART_LABEL1: Gesamt-Besucherzahl
+    CHART_LABEL2: Tages-Besucherzahl für 
+  
