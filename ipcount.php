@@ -20,9 +20,10 @@ class IPCountPlugin extends Plugin
 	 */
 	public static function getSubscribedEvents()
 	{
-		return [
-			'onPluginsInitialized' => ['onPluginsInitialized', 0],
-		];
+        return [
+            'onPluginsInitialized' => ['onPluginsInitialized', 0],
+            'onGetPageTemplates' => ['onGetPageTemplates',0]
+        ];
 	}
 
 	/**
@@ -30,12 +31,12 @@ class IPCountPlugin extends Plugin
 	 *
 	 * @return \Composer\Autoload\ClassLoader
 	 */
-	public function autoload(): \Composer\Autoload\ClassLoader
-	{
-		return require __DIR__ . '/vendor/autoload.php';
-	}
+    public function autoload(): \Composer\Autoload\ClassLoader
+    {
+        return require __DIR__ . '/vendor/autoload.php';
+    }
 
-	/**
+    /**
 	 * Initialize the plugin
 	 */
 	public function onPluginsInitialized()
@@ -46,9 +47,10 @@ class IPCountPlugin extends Plugin
 		}
 
 		$this->enable([
-			'onTwigExtensions' => ['onTwigExtensions', 0],
-			'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
-			'onPageInitialized' => ['onPageInitialized', 0],
+            'onGetPageTemplates' => ['onGetPageTemplates', 0],
+            'onTwigExtensions' => ['onTwigExtensions', 0],
+            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
+            'onPageInitialized' => ['onPageInitialized', 0],
 		]);
 
 		$this->countIP();
@@ -108,4 +110,14 @@ class IPCountPlugin extends Plugin
 	{
 		$this->grav['twig']->twig_paths[] = 'plugins://' . $this->name . '/templates';
 	}
+
+    // register Template 'visitors' so it can be used in the admin backend without having to be copied to the theme's template folder
+    // see https://github.com/getgrav/grav-learn/pull/907
+    public function onGetPageTemplates(Event $event)
+    {
+        /** @var Types $types */
+        $types = $event->types;
+        $types->register('visitors');
+        $types->scanTemplates(__DIR__.'/templates');
+    }
 }

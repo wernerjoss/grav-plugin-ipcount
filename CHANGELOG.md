@@ -1,3 +1,8 @@
+# v.1.3.9
+##  18/07/2023
+1. [](#updates)
+   * register template correctly, so it can be used from the admin dropdown
+
 # v.1.3.8
 ##  30/04/2022
 1. [](#updates)
