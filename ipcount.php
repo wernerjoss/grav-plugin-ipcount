@@ -21,8 +21,7 @@ class IPCountPlugin extends Plugin
 	public static function getSubscribedEvents()
 	{
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0],
-            'onGetPageTemplates' => ['onGetPageTemplates',0]
+            'onPluginsInitialized' => ['onPluginsInitialized', 0]
         ];
 	}
 
@@ -47,7 +46,7 @@ class IPCountPlugin extends Plugin
 		}
 
 		$this->enable([
-            'onGetPageTemplates' => ['onGetPageTemplates', 0],
+            'onGetPageTemplates' => ['onGetPageTemplates',0],
             'onTwigExtensions' => ['onTwigExtensions', 0],
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
             'onPageInitialized' => ['onPageInitialized', 0],
