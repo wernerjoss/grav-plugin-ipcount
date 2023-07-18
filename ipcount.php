@@ -22,6 +22,7 @@ class IPCountPlugin extends Plugin
     {
         return [
             'onPluginsInitialized' => ['onPluginsInitialized', 0],
+            'onGetPageTemplates' => ['onGetPageTemplates', 0],  // must be here, NOT in onPluginsInitialized() ! 18.07.23
         ];
     }
 
@@ -46,7 +47,6 @@ class IPCountPlugin extends Plugin
         }
 
         $this->enable([
-            'onGetPageTemplates' => ['onGetPageTemplates', 0],
             'onTwigExtensions' => ['onTwigExtensions', 0],
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
             'onPageInitialized' => ['onPageInitialized', 0],
