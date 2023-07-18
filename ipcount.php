@@ -22,7 +22,6 @@ class IPCountPlugin extends Plugin
     {
         return [
             'onPluginsInitialized' => ['onPluginsInitialized', 0],
-            'onGetPageTemplates' => ['onGetPageTemplates', 0],  // must be here, NOT in onPluginsInitialized() ! 18.07.23
         ];
     }
 
@@ -43,6 +42,9 @@ class IPCountPlugin extends Plugin
     {
         // Don't proceed if we are in the admin plugin
         if ($this->isAdmin()) {
+            $this->enable([
+                'onGetPageTemplates' => ['onGetPageTemplates', 0],  // this is finally the right place :-) 18.07.23
+            ]);
             return;
         }
 
